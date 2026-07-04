@@ -15,3 +15,20 @@ theme = 'PaperMod'
 [[menu.main]]
   name = "About"
   url = "/about/"
+
+[params.homeInfoParams]
+  Title = "Hi, I'm Ryan"
+  Content = """Mathematics and computer science student at Mississippi State, applying to PhD programs in theoretical computer science and algorithms. I write here about math, algorithms, books, and whatever else I'm thinking about.
+
+**Research Interests:** Data structures, algorithms, machine learning, reinforcement learning 
+
+**Currently Reading:** *The Count of Monte Cristo*.
+"""
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/RDG0818"
+
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:ryangoodwin0818@gmail.com"
