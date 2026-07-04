@@ -1,0 +1,17 @@
+baseURL = 'https://ryangoodwin.cv/'
+languageCode = 'en-us'
+title = "Ryan Goodwin"
+theme = 'PaperMod'
+
+[params]
+  description = "PhD applicant, theoretical CS / algorithms"
+
+[[menu.main]]
+  name = "Blog"
+  url = "/posts/"
+[[menu.main]]
+  name = "CV"
+  url = "/cv/"
+[[menu.main]]
+  name = "About"
+  url = "/about/"
