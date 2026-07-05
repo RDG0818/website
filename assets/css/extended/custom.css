@@ -1,0 +1,240 @@
+/* ===================================================================
+   Ryan Goodwin — "The Arcane Study"
+   Dark-academia + high-fantasy: a scholar-mage's grimoire of algorithms.
+   Layered on PaperMod (this file is concatenated after core CSS, so plain
+   selectors win by source order).
+
+   Fraunces (display) + EB Garamond (book body). Two warm palettes:
+   LIGHT = ivory page, near-black ink, clay accents; DARK = espresso
+   ground, parchment ink, brass-gold accents. Faint vellum grain, a
+   candlelight vignette, and a faint ruled-grid motif fading in from the
+   top-right corner of the homepage. Motion kept to hover/focus.
+   =================================================================== */
+
+/* ---- Tokens: LIGHT (parchment page) -------------------------------- */
+:root {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "EB Garamond", Georgia, "Times New Roman", serif;
+
+  --accent: #b0492b;         /* burnt clay — links (Anthropic-ish) */
+  --accent-hover: #cc785c;   /* soft clay */
+  --gold: #bd7a54;           /* rules, nav, flourishes — clay-tan */
+  --grid: url("/img/grid-light.svg");
+  --vignette: radial-gradient(ellipse 120% 130% at 50% 25%,
+              transparent 60%, rgba(60, 50, 40, 0.07) 100%);
+
+  --theme: rgb(235, 230, 219);       /* warm ivory, a touch deeper than Anthropic */
+  --entry: rgb(242, 238, 228);       /* paper */
+  --primary: rgb(30, 29, 26);        /* warm near-black ink */
+  --secondary: rgb(114, 108, 98);    /* warm grey */
+  --tertiary: rgb(221, 215, 202);
+  --content: rgb(50, 47, 43);        /* warm dark-grey body */
+  --border: rgb(221, 215, 202);
+  --code-bg: rgb(229, 224, 211);
+}
+
+/* ---- Tokens: DARK (espresso study) --------------------------------- */
+:root[data-theme="dark"] {
+  --accent: #c9a24b;         /* brass-gold — links */
+  --accent-hover: #e0bd6a;
+  --gold: #c9a24b;
+  --grid: url("/img/grid-dark.svg");
+  --vignette: radial-gradient(ellipse 120% 130% at 50% 25%,
+              transparent 42%, rgba(8, 5, 3, 0.5) 100%);
+
+  --theme: rgb(28, 23, 18);          /* espresso */
+  --entry: rgb(36, 29, 22);
+  --primary: rgb(236, 227, 208);     /* parchment text */
+  --secondary: rgb(163, 146, 122);
+  --tertiary: rgb(58, 47, 36);
+  --content: rgb(216, 204, 180);
+  --border: rgb(58, 47, 36);
+  --code-bg: rgb(42, 34, 26);
+  --code-block-bg: rgb(34, 27, 21);
+}
+
+/* ---- Base type ----------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-size: 1.16rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4,
+.post-content h1, .post-content h2, .post-content h3, .post-content h4,
+.entry-header h1, .entry-header h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.logo a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Atmosphere: vellum grain + candlelight vignette --------------- */
+/* Fixed, full-viewport, behind all content. Real content sits above via
+   .main { z-index: 1 }. Both are decorative and pointer-inert. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* grain */
+body::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* vignette */
+body::after {
+  background: var(--vignette);
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Homepage hero ------------------------------------------------- */
+.home-info .entry-header {
+  overflow: visible;
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.home-info .entry-header h1 {
+  font-size: clamp(2.7rem, 6vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.home-info .entry-content {
+  font-size: 1.26rem;
+  line-height: 1.75;
+  color: var(--content);
+  max-width: 42rem;
+}
+
+/* Epigraph — the first paragraph of the bio (the programming-as-magic line) */
+.home-info .entry-content > p:first-of-type {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.44rem;
+  line-height: 1.5;
+  color: var(--gold);
+  border-inline-start: 2px solid var(--gold);
+  padding-inline-start: 1rem;
+  margin-block-end: 1.4rem;
+  max-width: 34rem;
+}
+
+/* Ruled-grid motif — a faint graticule fading in from the top-right,
+   homepage ONLY (.home-info exists only there, so it never bleeds onto
+   list/post pages). Fixed to the viewport corner, behind content; the
+   corner fade is baked into the SVG (see static/img/map-*.svg). */
+.first-entry.home-info {
+  position: relative;
+}
+
+.first-entry.home-info::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: min(38vw, 460px);
+  height: min(38vw, 460px);
+  background: var(--grid) top right / contain no-repeat;
+}
+
+.first-entry.home-info > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Links: animated underline ------------------------------------- */
+.post-content a,
+.home-info .entry-content a,
+.post-single .post-content a {
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1.5px;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+
+.post-content a:hover,
+.home-info .entry-content a:hover,
+.post-single .post-content a:hover {
+  color: var(--accent-hover);
+  background-size: 100% 1.5px;
+}
+
+/* Keep the epigraph's own emphasis from picking up link styling weirdness */
+.home-info .entry-content > p:first-of-type a {
+  color: inherit;
+}
+
+/* Nav + utility links */
+.menu a,
+.social-icons a,
+.footer a {
+  transition: color 0.2s ease;
+}
+
+.menu a:hover,
+.social-icons a:hover,
+.footer a:hover {
+  color: var(--gold);
+}
+
+.menu .active {
+  border-bottom: 2px solid var(--gold);
+}
+
+.post-content blockquote {
+  border-inline-start: 2px solid var(--gold);
+}
+
+/* ---- Post cards ---------------------------------------------------- */
+.post-entry {
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+  border-color: var(--gold);
+}
+
+/* ---- Accessibility floor ------------------------------------------ */
+a:focus-visible,
+button:focus-visible,
+.menu a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

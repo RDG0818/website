@@ -5,6 +5,7 @@ theme = 'PaperMod'
 
 [params]
   description = "PhD applicant, theoretical CS / algorithms"
+  defaultTheme = "dark"
 
 [[menu.main]]
   name = "Blog"
@@ -17,8 +18,10 @@ theme = 'PaperMod'
   url = "/about/"
 
 [params.homeInfoParams]
-  Title = "Hi, I'm Ryan"
-  Content = """Mathematics and computer science student at Mississippi State, applying to PhD programs in theoretical computer science and algorithms. I write here about math, algorithms, books, and whatever else I'm thinking about.
+  Title = "Ryan Goodwin"
+  Content = """*The programmer, like the poet, works only slightly removed from pure thought-stuff.*
+
+Mathematics and computer science student at Mississippi State, applying for PhD programs in theoretical CS. I write here about math, algorithms, books, and whatever else has my attention.
 
 **Research Interests:** Data structures, algorithms, machine learning, reinforcement learning 
 

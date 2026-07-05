@@ -1,0 +1,11 @@
+# Hugo build output (regenerated in CI — see .github/workflows/hugo.yml)
+/public/
+/resources/
+.hugo_build.lock
+
+# Local agent config / session scaffolding
+/.claude/
+
+# OS / editor cruft
+.DS_Store
+*~
