@@ -1,0 +1,21 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info">
+    <div class="about-hero">
+        <div class="about-main">
+            <div class="about-intro">
+                {{ $opts := dict "display" "block" }}
+                {{ .Content | $.Page.RenderString $opts }}
+            </div>
+        </div>
+
+        <aside class="about-side">
+            {{- /* Portrait slot — swap the empty box for <img> when ready.
+                   e.g. <div class="about-photo"><img src="/img/ryan.jpg" alt="Ryan Goodwin"></div> */ -}}
+            <div class="about-photo" role="img" aria-label="Portrait placeholder"></div>
+            <footer class="entry-footer">
+                {{ partial "social_icons.html" (dict "align" "center") }}
+            </footer>
+        </aside>
+    </div>
+</article>
+{{- end -}}

@@ -1,0 +1,20 @@
+# Edit / add your projects here. Each entry renders in the #projects section.
+# links is optional; each link needs a label and url.
+- title: Example Project One
+  year: 2025
+  description: >-
+    One-line description of what this project is and why it matters.
+    Replace this with a real project.
+  links:
+    - label: Repo
+      url: https://github.com/RDG0818
+    - label: Paper
+      url: "#"
+
+- title: Example Project Two
+  year: 2024
+  description: >-
+    Another short blurb. Keep these to a sentence or two.
+  links:
+    - label: Repo
+      url: https://github.com/RDG0818

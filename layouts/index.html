@@ -1,0 +1,50 @@
+{{- define "main" }}
+
+{{ partial "home_info.html" . }}
+
+<section id="projects" class="home-section">
+    <h2 class="section-title">Projects</h2>
+    {{- with site.Data.projects }}
+    <ul class="project-list">
+        {{- range . }}
+        <li class="project">
+            <div class="project-head">
+                <h3 class="project-title">{{ .title }}</h3>
+                {{- with .year }}<span class="project-year">{{ . }}</span>{{ end }}
+            </div>
+            {{- with .description }}<p class="project-desc">{{ . }}</p>{{ end }}
+            {{- with .links }}
+            <p class="project-links">
+                {{- range . }}<a href="{{ .url }}"{{ if ne .url "#" }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>{{ end }}
+            </p>
+            {{- end }}
+        </li>
+        {{- end }}
+    </ul>
+    {{- else }}
+    <p class="section-empty">Coming soon.</p>
+    {{- end }}
+</section>
+
+<section id="writing" class="home-section">
+    <h2 class="section-title">Writing</h2>
+    {{- $posts := where site.RegularPages "Section" "posts" }}
+    {{- if $posts }}
+    <ul class="writing-list">
+        {{- range first 5 $posts }}
+        <li class="writing-item">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+            <div class="writing-body">
+                <a href="{{ .RelPermalink }}" class="writing-title">{{ .Title }}</a>
+                {{- with .Summary }}<p class="writing-summary">{{ . | plainify | truncate 160 }}</p>{{ end }}
+            </div>
+        </li>
+        {{- end }}
+    </ul>
+    <p class="section-more"><a href="/posts/">All writing &rarr;</a></p>
+    {{- else }}
+    <p class="section-empty">Coming soon.</p>
+    {{- end }}
+</section>
+
+{{- end }}
