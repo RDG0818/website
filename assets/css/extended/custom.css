@@ -6,9 +6,8 @@
 
    Fraunces (display) + EB Garamond (book body). Two warm palettes:
    LIGHT = ivory page, near-black ink, clay accents; DARK = espresso
-   ground, parchment ink, brass-gold accents. Faint vellum grain, a
-   candlelight vignette, and a faint ruled-grid motif fading in from the
-   top-right corner of the homepage. Motion kept to hover/focus.
+   ground, parchment ink, brass-gold accents. Faint vellum grain and a
+   candlelight vignette. Motion kept to hover/focus.
    =================================================================== */
 
 /* ---- Tokens: LIGHT (parchment page) -------------------------------- */
@@ -19,7 +18,6 @@
   --accent: #b0492b;         /* burnt clay — links (Anthropic-ish) */
   --accent-hover: #cc785c;   /* soft clay */
   --gold: #bd7a54;           /* rules, nav, flourishes — clay-tan */
-  --grid: url("/img/grid-light.svg");
   --vignette: radial-gradient(ellipse 120% 130% at 50% 25%,
               transparent 60%, rgba(60, 50, 40, 0.07) 100%);
 
@@ -38,7 +36,6 @@
   --accent: #c9a24b;         /* brass-gold — links */
   --accent-hover: #e0bd6a;
   --gold: #c9a24b;
-  --grid: url("/img/grid-dark.svg");
   --vignette: radial-gradient(ellipse 120% 130% at 50% 25%,
               transparent 42%, rgba(8, 5, 3, 0.5) 100%);
 
@@ -207,24 +204,8 @@ body::after {
   }
 }
 
-/* Ruled-grid motif — a faint graticule fading in from the top-right,
-   homepage ONLY (.home-info exists only there, so it never bleeds onto
-   list/post pages). Fixed to the viewport corner, behind content; the
-   corner fade is baked into the SVG (see static/img/map-*.svg). */
 .first-entry.home-info {
   position: relative;
-}
-
-.first-entry.home-info::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 0;
-  pointer-events: none;
-  width: min(38vw, 460px);
-  height: min(38vw, 460px);
-  background: var(--grid) top right / contain no-repeat;
 }
 
 .first-entry.home-info > * {
@@ -460,3 +441,64 @@ html {
 .about-intro p + p {
   margin-block-start: 1rem;
 }
+
+/* ---- v2 accents: oxblood token, name plate, gold highlight, marginalia --- */
+:root { --ox: #7c2b2b; }        /* oxblood — margins only */
+
+
+/* Gold highlight — half-height marker (color behind text, not on it) */
+.hl-gold {
+  background: linear-gradient(180deg, transparent 50%,
+              var(--hl-gold) 50%);
+  padding: 0 0.1em;
+  border-radius: 1.5px;
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
+/* Marginalia — oxblood margin quote, used sparingly */
+.marginalia {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.45;
+  color: var(--content);
+  border-inline-start: 2px solid var(--ox);
+  padding-inline-start: 1rem;
+  margin-block-start: 1.9rem;
+  max-width: 34rem;
+}
+.marginalia .who {
+  display: block;
+  font-style: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  color: var(--secondary);
+  margin-block-start: 0.5rem;
+}
+
+:root { --hl-gold: rgba(189, 122, 84, 0.30); }              /* clay gold @ light */
+:root[data-theme="dark"] { --hl-gold: rgba(201, 162, 75, 0.34); }  /* brass gold @ dark */
+
+/* Projects with a right-margin quote */
+.section-margined {
+  width: 62rem;
+  max-width: 96vw;
+}
+.section-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 46rem) minmax(9rem, 13rem);
+  gap: 3rem;
+  align-items: start;
+}
+.margin-note {
+  margin-block-start: 6rem;   /* drops the quote to sit between project 1 and 2 */
+}
+@media (max-width: 720px) {
+  .section-flow { grid-template-columns: 1fr; }
+  .margin-note { margin-block-start: 1.5rem; }
+}
+
+/* Larger name in header */
+.logo a { font-size: 2rem; }

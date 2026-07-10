@@ -25,7 +25,7 @@ theme = 'PaperMod'
 
 [params.homeInfoParams]
   Content = """
-I'm a mathematics and computer science student at Mississippi State University and am interested in pursuing a PhD in theoretical computer science. 
+I'm a mathematics and computer science student at Mississippi State University and am interested in pursuing a PhD in <span class="hl-gold">theoretical computer science</span>. 
 
 I write here about math, algorithms, data structures, the books I'm reading, and whatever else has my attention. 
 
@@ -43,3 +43,6 @@ Currently reading *The Count of Monte Cristo*.
 [[params.socialIcons]]
   name = "email"
   url = "mailto:ryangoodwin0818@gmail.com"
+
+[markup.goldmark.renderer]
+  unsafe = true

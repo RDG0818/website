@@ -2,28 +2,36 @@
 
 {{ partial "home_info.html" . }}
 
-<section id="projects" class="home-section">
-    <h2 class="section-title">Projects</h2>
-    {{- with site.Data.projects }}
-    <ul class="project-list">
-        {{- range . }}
-        <li class="project">
-            <div class="project-head">
-                <h3 class="project-title">{{ .title }}</h3>
-                {{- with .year }}<span class="project-year">{{ . }}</span>{{ end }}
-            </div>
-            {{- with .description }}<p class="project-desc">{{ . }}</p>{{ end }}
-            {{- with .links }}
-            <p class="project-links">
-                {{- range . }}<a href="{{ .url }}"{{ if ne .url "#" }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>{{ end }}
-            </p>
+<section id="projects" class="home-section section-margined">
+    <div class="section-flow">
+        <div class="section-main">
+            <h2 class="section-title">Projects</h2>
+            {{- with site.Data.projects }}
+            <ul class="project-list">
+                {{- range . }}
+                <li class="project">
+                    <div class="project-head">
+                        <h3 class="project-title">{{ .title }}</h3>
+                        {{- with .year }}<span class="project-year">{{ . }}</span>{{ end }}
+                    </div>
+                    {{- with .description }}<p class="project-desc">{{ . }}</p>{{ end }}
+                    {{- with .links }}
+                    <p class="project-links">
+                        {{- range . }}<a href="{{ .url }}"{{ if ne .url "#" }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>{{ end }}
+                    </p>
+                    {{- end }}
+                </li>
+                {{- end }}
+            </ul>
+            {{- else }}
+            <p class="section-empty">Coming soon.</p>
             {{- end }}
-        </li>
-        {{- end }}
-    </ul>
-    {{- else }}
-    <p class="section-empty">Coming soon.</p>
-    {{- end }}
+        </div>
+        <aside class="marginalia margin-note" aria-label="Margin note">
+            &ldquo;Wait and hope.&rdquo;
+            <span class="who">&mdash; Dumas, The Count of Monte Cristo</span>
+        </aside>
+    </div>
 </section>
 
 <section id="writing" class="home-section">
