@@ -385,6 +385,32 @@ html {
   font-size: 0.98rem;
 }
 
+/* Resume-style highlight bullets under a project */
+.project-highlights {
+  list-style: none;
+  margin: 0.6rem 0 0.7rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.project-highlights li {
+  position: relative;
+  padding-inline-start: 1.35rem;
+  color: var(--content);
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+.project-highlights li::before {
+  content: "\203A";           /* › single right-angle quote, in gold */
+  position: absolute;
+  inset-inline-start: 0.2rem;
+  top: -0.02em;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
 /* Writing */
 .writing-item {
   display: grid;
@@ -442,18 +468,13 @@ html {
   margin-block-start: 1rem;
 }
 
-/* ---- v2 accents: oxblood token, name plate, gold highlight, marginalia --- */
-:root { --ox: #7c2b2b; }        /* oxblood — margins only */
+/* ---- v2 accents: name plate, gold highlight, marginalia --------------- */
 
 
 /* Gold highlight — half-height marker (color behind text, not on it) */
 .hl-gold {
-  background: linear-gradient(180deg, transparent 50%,
-              var(--hl-gold) 50%);
-  padding: 0 0.1em;
-  border-radius: 1.5px;
-  -webkit-box-decoration-break: clone;
-          box-decoration-break: clone;
+  color: var(--gold);
+  font-weight: 600;
 }
 
 /* Marginalia — oxblood margin quote, used sparingly */
@@ -463,7 +484,7 @@ html {
   font-size: 1.08rem;
   line-height: 1.45;
   color: var(--content);
-  border-inline-start: 2px solid var(--ox);
+  border-inline-start: 2px solid var(--gold);
   padding-inline-start: 1rem;
   margin-block-start: 1.9rem;
   max-width: 34rem;
@@ -478,8 +499,6 @@ html {
   margin-block-start: 0.5rem;
 }
 
-:root { --hl-gold: rgba(189, 122, 84, 0.30); }              /* clay gold @ light */
-:root[data-theme="dark"] { --hl-gold: rgba(201, 162, 75, 0.34); }  /* brass gold @ dark */
 
 /* Projects with a right-margin quote */
 .section-margined {
@@ -502,3 +521,52 @@ html {
 
 /* Larger name in header */
 .logo a { font-size: 2rem; }
+
+/* ---- Closing quote: centered epigraph card at the foot of the page --- */
+.closing-quote {
+  max-width: 32rem;
+  margin: 3.5rem 0 2.25rem;
+  padding-block-start: 1.3rem;
+  text-align: start;
+  position: relative;
+}
+
+/* Gold hairline above the quote */
+.closing-quote::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 4rem;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+.closing-quote blockquote {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--content);
+}
+
+.closing-emph {
+  display: block;
+  margin-block-start: 0.35rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.closing-quote figcaption {
+  margin-block-start: 0.9rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--secondary);
+}

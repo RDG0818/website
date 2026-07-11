@@ -11,10 +11,16 @@
     - label: Paper
       url: "#"
 
-- title: Example Project Two
-  year: 2024
+- title: Bucket Aggregation in Bucket-Based Priority Queues
+  year: 2026
   description: >-
-    Another short blurb. Keep these to a sentence or two.
+    How do bucket-based priority queues keep their speed when an informative
+    heuristic scatters nodes across sparse buckets? By aggregating neighboring
+    buckets into coarser ranges, we restore density and
+    <span class="hl-gold">recover the speed of bucketing</span> for bounded-suboptimal
+    and anytime heuristic search — without weakening solution-quality guarantees.
   links:
+    - label: Paper
+      url: /GoodwinSoCS26.pdf
     - label: Repo
-      url: https://github.com/RDG0818
+      url: https://github.com/RDG0818/BucketAggregation
